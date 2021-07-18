@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('md')]: {
             backgroundPosition: '80%'
         }
+    },
+    padding: {
+        padding: theme.spacing(3),
     }
 }));
 
@@ -29,7 +32,11 @@ export default function Background(props) {
             className={classes.container}
             id="background"
         >
-            {props.children}
+            <div
+                className={classes.padding}
+            >
+                {props.children}
+            </div>
         </div>
     );
 }

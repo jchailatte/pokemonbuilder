@@ -35,8 +35,7 @@ const regions = [
 const Index = () => {
     const classes = useStyles();
 
-    const team = usePokestore((state) => state.team);
-    const { region, setRegion } = usePokestore((state) => state);
+    const { region, team, setRegion } = usePokestore((state) => state);
 
     const selectRegion = (event) => {
         setRegion(event.target.value);
@@ -97,15 +96,15 @@ const Index = () => {
                                             href={{
                                                 pathname: `/pokemon`,
                                                 query: { pos: i }
-                                            }}  
+                                            }}
                                         >
-                                        <CardActionArea>
-                                            <ControlPoint />
-                                        </CardActionArea>
+                                            <CardActionArea>
+                                                <ControlPoint />
+                                            </CardActionArea>
                                         </Link>
                                     </Card>
                                 ) : (
-                                    <div> info </div>
+                                    console.log(pokemon)
                                 )
                             }
                         </Grid>

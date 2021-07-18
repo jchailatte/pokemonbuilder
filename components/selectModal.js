@@ -10,7 +10,7 @@ import {
     Button,
 } from '@material-ui/core';
 
-import usePokestore from '@/utils/store/pokestore';
+import usePokestore from '@/store/pokestore';
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -75,7 +75,7 @@ const SelectModal = (props) => {
                         className={classes.paperModal}
                     >
                         <Grid
-                            justify="center"
+                            justifyContent="center"
                             spacing={1}
                             container
                         >
