@@ -1,5 +1,6 @@
 import { Fragment, useEffect } from 'react';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Grid,
@@ -48,6 +49,8 @@ const Index = () => {
 
     const { region, team, setRegion } = usePokestore((state) => state);
 
+    const [session, loading] = useSession();
+
     const selectRegion = (event) => {
         setRegion(event.target.value);
     }
@@ -73,12 +76,13 @@ const Index = () => {
                     item
                     md={6}
                 >
-                    <Button
-                        style={{ width: '100%' }}
-                        variant="contained"
-                    >
-                        Log In
-                    </Button>
+                        <Button
+                            onClick={!session ? signIn : signOut}
+                            style={{ width: '100%' }}
+                            variant="contained"
+                        >
+                            {!session ? "Log In" : "Log Out"}
+                        </Button>
                 </Grid>
                 <Grid
                     xs={12}
@@ -96,7 +100,7 @@ const Index = () => {
                             label="Region"
                             onChange={selectRegion}
                             value={region}
-                            
+
                         >
                             <MenuItem
                                 value={0}
