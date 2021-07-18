@@ -8,15 +8,26 @@ import {
     FormControl,
     Select,
     MenuItem,
-    InputLabel
+    InputLabel,
+    Button
 } from '@material-ui/core';
 import { ControlPoint } from '@material-ui/icons';
+
+import InfoCard from '@/components/infoCard';
 
 import usePokestore from '@/store/pokestore';
 
 const useStyles = makeStyles(theme => ({
     regionSelect: {
         backgroundColor: 'white',
+        width: '100%'
+    },
+    cardStyle: {
+        display: 'flex',
+        padding: theme.spacing(3),
+        textAlign: 'center',
+        minHeight: '25vh',
+        height: '100%'
     }
 }));
 
@@ -48,11 +59,34 @@ const Index = () => {
                 container
             >
                 <Grid
+                    item
+                    md={6}
+                >
+                    <Button
+                        style={{ width: '100%' }}
+                        variant="contained"
+                    >
+                        Save Team
+                    </Button>
+                </Grid>
+                <Grid
+                    item
+                    md={6}
+                >
+                    <Button
+                        style={{ width: '100%' }}
+                        variant="contained"
+                    >
+                        Log In
+                    </Button>
+                </Grid>
+                <Grid
                     xs={12}
                     item
                 >
                     <FormControl
                         variant="filled"
+                        style={{ width: '100%' }}
                     >
                         <InputLabel>
                             Region
@@ -62,7 +96,7 @@ const Index = () => {
                             label="Region"
                             onChange={selectRegion}
                             value={region}
-                            autoWidth
+                            
                         >
                             <MenuItem
                                 value={0}
@@ -91,20 +125,26 @@ const Index = () => {
                         >
                             {Object.keys(pokemon).length === 0 ?
                                 (
-                                    <Card>
+                                    <Card
+                                        style={{ height: '100%' }}
+                                    >
                                         <Link
                                             href={{
                                                 pathname: `/pokemon`,
                                                 query: { pos: i }
                                             }}
                                         >
-                                            <CardActionArea>
+                                            <CardActionArea
+                                                className={classes.cardStyle}
+                                            >
                                                 <ControlPoint />
                                             </CardActionArea>
                                         </Link>
                                     </Card>
                                 ) : (
-                                    console.log(pokemon)
+                                    <InfoCard
+                                        pos={i}
+                                    />
                                 )
                             }
                         </Grid>

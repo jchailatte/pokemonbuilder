@@ -128,7 +128,8 @@ const Pokemon = () => {
                 "ability": ability,
                 "item": heldItem,
                 "nature": nature,
-                "moves": moves
+                "moves": moves,
+                "id": pokemonID,
             })
         }
     };

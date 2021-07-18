@@ -13,44 +13,10 @@ const Pokestore = create(devtools((set) => {
         ],
         region: 2,
         setPokemonTeam: (pos, pokemon) => {
-            console.log(pokemon);
+            set(state=> ({team: [...state.team.slice(0, pos), pokemon, ...state.team.slice(pos+1)]}))
         },
         setRegion: (gen) => set({ region: gen }),
     }
 }));
-
-// const initialState = {
-//     team: [
-//         {},
-//         {},
-//         {},
-//         {},
-//         {},
-//         {}
-//     ],
-//     region: 2,
-// };
-
-// const types = {
-//     changeRegion: "REGION",
-//     addParty: "ADD",
-// };
-
-// const reducer = (state, { type, by }) => {
-//     switch (type) {
-//         case type.changeRegion:
-//             return {...state, region: by }
-//         case type.addParty:
-//             return console.log(by);
-//         default:
-//             return
-//     }
-// }
-
-// const usePokestore = create(
-//     devtools(
-//         redux(reducer, initialState)
-//     )
-// )
 
 export default Pokestore

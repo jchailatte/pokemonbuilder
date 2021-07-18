@@ -56,8 +56,11 @@ const SelectModal = (props) => {
                 });
             setPokemonList(response.pokemon_entries)
         };
-    
-        getPokemonList();
+        if (region != 0) {
+            getPokemonList();
+        } else {
+            console.log("Select a Region!");
+        }
     }, [region])
 
     return (
