@@ -5,10 +5,20 @@ export default NextAuth({
     providers: [
         Providers.GitHub({
             clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET
-          }),
+            clientSecret: process.env.GITHUB_SECRET,
+            scope: "read:user"
+        }),
     ],
 
     // A database is optional, but required to persist accounts in a database
-    //database: process.env.DATABASE_URL,
+    database: process.env.DATABASE_URL,
+    // callbacks: {
+    //     async jwt(token, user, account, profile, isNewUser) {
+    //         if (user) { // User object only passed on initial JWT creation
+    //             const administrators = ['jonathan.chai98@gmail.com']
+    //             token.isAdmin = administrators.includes(user?.email)
+    //         }
+    //         return token
+    //     }
+    // }
 })

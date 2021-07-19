@@ -13,7 +13,13 @@ const Pokestore = create(devtools((set) => {
         ],
         region: 2,
         setPokemonTeam: (pos, pokemon) => {
-            set(state=> ({team: [...state.team.slice(0, pos), pokemon, ...state.team.slice(pos+1)]}))
+            set(state => {
+                let newArr = [...state.team];
+                newArr[pos] = pokemon;
+                return (
+                    {team: newArr}
+                )
+            })
         },
         setRegion: (gen) => set({ region: gen }),
     }

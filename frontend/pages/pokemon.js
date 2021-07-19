@@ -134,6 +134,18 @@ const Pokemon = () => {
         }
     };
 
+    useEffect(()=> {
+        if(Object.keys(team[pos]) != 0) {
+            setPokemonID(team[pos].id);
+            setPokemonImage(`${pokeSpriteUrl}${team[pos].id}.png`);
+            setPokemon(team[pos].pokemon);
+            setAbility(team[pos].ability);
+            setHeldItem(team[pos].item);
+            setNature(team[pos].nature);
+            setMoves(team[pos].moves);
+        }
+    },[])
+
     useEffect(() => {
         const getPokemon = async () => {
             const response = await fetch(

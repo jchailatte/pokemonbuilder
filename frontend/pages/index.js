@@ -76,13 +76,26 @@ const Index = () => {
                     item
                     md={6}
                 >
+                    <Button
+                        onClick={!session ? signIn : signOut}
+                        style={{ width: '100%' }}
+                        variant="contained"
+                    >
+                        {!session ? "Log In" : "Log Out"}
+                    </Button>
+                </Grid>
+                <Grid
+                    item
+                    xs={12}
+                >
+                    <Link href="/teamselect">
                         <Button
-                            onClick={!session ? signIn : signOut}
                             style={{ width: '100%' }}
                             variant="contained"
                         >
-                            {!session ? "Log In" : "Log Out"}
+                            Select Team
                         </Button>
+                    </Link>
                 </Grid>
                 <Grid
                     xs={12}
