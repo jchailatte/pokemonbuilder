@@ -168,7 +168,7 @@ const AdminPage = () => {
     const [session, loading] = useSession();
 
     if (loading) return null;
-    if (!loading && session.user.admin ) {
+    if ((!loading && !session) || !session.user.isAdmin) {
         return (
             <p>
                 Access Denied
