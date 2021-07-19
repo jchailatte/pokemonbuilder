@@ -131,6 +131,7 @@ const Pokemon = () => {
                 "moves": moves,
                 "id": pokemonID,
             })
+            router.push("/")
         }
     };
 

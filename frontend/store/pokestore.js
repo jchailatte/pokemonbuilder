@@ -3,6 +3,7 @@ import { devtools, redux } from 'zustand/middleware'
 
 const Pokestore = create(devtools((set) => {
     return {
+        teamID: "",
         team: [
             {},
             {},
@@ -22,6 +23,8 @@ const Pokestore = create(devtools((set) => {
             })
         },
         setRegion: (gen) => set({ region: gen }),
+        setTeamID: (id) => set({teamID: id}),
+        newTeam: (newTeam) => set({team : newTeam})
     }
 }));
 

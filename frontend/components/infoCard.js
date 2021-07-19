@@ -41,13 +41,14 @@ const InfoCard = (props) => {
                             <Grid
                                 md={4}
                                 item
+                                style={{textAlign: 'center'}}
                             >
                                 <img
                                     alt="pokemon"
-                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${team[props.pos].id}.png`}
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemon.id}.png`}
                                 />
                                 <Typography>
-                                    {team[props.pos].pokemon}
+                                    {props.pokemon.pokemon}
                                 </Typography>
                             </Grid>
                             <Grid
@@ -75,7 +76,7 @@ const InfoCard = (props) => {
                                         }}
                                         xs={10}
                                     >
-                                        {team[props.pos].type.map((item, i) => {
+                                        {props.pokemon.type.map((item, i) => {
                                             return (
                                                 <img
                                                     src={`https://www.serebii.net/pokedex-bw/type/${item.type.name}.gif`}
@@ -99,7 +100,7 @@ const InfoCard = (props) => {
                                         item
                                     >
                                         <Typography>
-                                            {team[props.pos].ability.toUpperCase()}
+                                            {props.pokemon.ability.toUpperCase()}
                                         </Typography>
                                     </Grid>
                                     <Grid
@@ -115,7 +116,7 @@ const InfoCard = (props) => {
                                         xs={10}
                                     >
                                         <Typography>
-                                            {team[props.pos].item.toUpperCase()}
+                                            {props.pokemon.item.toUpperCase()}
                                         </Typography>
                                     </Grid>
                                     <Grid
@@ -131,7 +132,7 @@ const InfoCard = (props) => {
                                         xs={10}
                                     >
                                         <Typography>
-                                            {team[props.pos].nature.toUpperCase()}
+                                            {props.pokemon.nature.toUpperCase()}
                                         </Typography>
                                     </Grid>
                                     <Grid
@@ -146,7 +147,7 @@ const InfoCard = (props) => {
                                         item
                                         xs={10}
                                     >
-                                        {team[props.pos].moves.map((move,i) => {
+                                        {props.pokemon.moves.map((move,i) => {
                                             return (
                                                 <Typography
                                                     key={"move" + i}
