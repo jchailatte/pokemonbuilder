@@ -24,6 +24,15 @@ router.get("/getteams", function (req, res) {
         })
 })
 
+router.get("/getall", function (req, res) {
+    Team.find({})
+        .exec()
+        .then((docs, err) => {
+            res.status(200);
+            return res.json(docs)
+        })
+})
+
 router.delete('/deleteteam', function (req, res) {
     Team.remove({"_id": req.query.id})
         .exec()
