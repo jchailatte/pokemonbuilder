@@ -18,14 +18,11 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const TeamSelect = () => {
+const Admin = () => {
     const classes = useStyles();
 
     const router = useRouter();
     const { newTeam, setTeamID } = usePokestore(state => state);
-
-    const [session, loading] = useSession();
-
     const [teamJson, setTeamJson] = useState([]);
 
     const replaceTeam = (team, id) => {
@@ -54,7 +51,7 @@ const TeamSelect = () => {
     useEffect(() => {
         const getTeams = async () => {
             const response = await fetch(
-                `http://localhost:3080/pokemon/getteams?email=${session.user.email}`,
+                `http://localhost:3080/pokemon/getall`,
                 {
                     method: 'GET',
                     cache: 'default',
@@ -77,27 +74,18 @@ const TeamSelect = () => {
                 container
                 spacing={2}
             >
-                <Grid
-                    item
+                <Grid 
+                    item 
                     xs={12}
                 >
-                    <Button
-                        style={{ width: '100%' }}
+                    <Button 
+                        style={{width: '100%'}}
                         variant="contained"
-                        onClick={() => router.push("/")}
-                    >
+                        onClick={()=>router.push("/")}
+                    > 
                         Home Page
                     </Button>
                 </Grid>
-                {session.user.isAdmin &&
-                    <Button
-                        style={{ width: '100%' }}
-                        variant="contained"
-                        onClick={() => router.push("/admin")}
-                    >
-                        Admin Page
-                    </Button>
-                }
                 {teamJson.map((item, i) => {
                     return (
                         <Grid
@@ -120,6 +108,9 @@ const TeamSelect = () => {
                                         <Typography>
                                             ID: {item._id}
                                         </Typography>
+                                        <Typography>
+                                            Email: {item.email}
+                                        </Typography>
                                         <Button
                                             onClick={() => deleteTeam(item._id)}
                                             variant="contained"
@@ -134,9 +125,9 @@ const TeamSelect = () => {
                                     >
                                         <CardActionArea
                                             onClick={() => replaceTeam(item.team, item._id)}
-                                            style={{ width: '100%' }}
+                                            style={{width: '100%'}}
                                         >
-                                            <Grid
+                                            <Grid 
                                                 container
                                                 spacing={3}
                                             >
@@ -173,11 +164,11 @@ const TeamSelect = () => {
     )
 }
 
-const TeamSelectPage = () => {
+const AdminPage = () => {
     const [session, loading] = useSession();
 
     if (loading) return null;
-    if (!loading && !session) {
+    if (!loading && session.user.admin ) {
         return (
             <p>
                 Access Denied
@@ -186,8 +177,8 @@ const TeamSelectPage = () => {
     }
 
     return (
-        <TeamSelect />
+        <Admin />
     )
 }
 
-export default TeamSelectPage;
+export default AdminPage;
